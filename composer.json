@@ -1,0 +1,25 @@
+{
+    "name": "omegacode/t3-debugger-utility-standalone",
+    "description": "A standalone port of the DebuggerUtility of the well known CMS TYPO3.",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Wolf Utz",
+            "email": "wpu@hotmail.de"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "OmegaCode\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "OmegaCode\\Tests\\": "tests/"
+        }
+    }
+}
