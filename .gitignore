@@ -3,3 +3,5 @@ vendor/
 .php_cs.cache
 .env
 .idea/
+/docker-compose.yml
+/local-tests/
