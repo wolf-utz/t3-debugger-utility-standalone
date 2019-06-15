@@ -1,0 +1,29 @@
+language: php
+
+php:
+  - 7.1
+
+sudo: true
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+notifications:
+  email:
+    recipients:
+      - wpu@hotmail.de
+    on_success: change
+    on_failure: change
+
+before_script:
+  - build/scripts/console.sh -s build -p $TRAVIS_PHP_VERSION
+
+script:
+  - >
+    echo "Running code quality tests";
+    build/scripts/console.sh -s quality -p $TRAVIS_PHP_VERSION
+
+  - >
+    echo "Running unit tests";
+    build/scripts/console.sh -s unit -p $TRAVIS_PHP_VERSION

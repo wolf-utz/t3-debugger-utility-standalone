@@ -1,0 +1,45 @@
+version: '2.3'
+services:
+    #======================================================
+    # Build
+    #======================================================
+    build:
+        image: php:${PHP_VERSION}-alpine
+        volumes:
+            - ${ROOT_DIR}:${ROOT_DIR}
+        working_dir: ${ROOT_DIR}
+        command: >
+            /bin/sh -c "
+                curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+                composer validate
+                composer install
+            "
+    #======================================================
+    # Quality
+    #======================================================
+    quality:
+        image: php:${PHP_VERSION}-alpine
+        volumes:
+            - ${ROOT_DIR}:${ROOT_DIR}
+        working_dir: ${ROOT_DIR}
+        command: >
+            /bin/sh -c "
+                echo \"Running phpcs...\";
+                vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php src;
+                echo \"Running phpmd...\";
+                vendor/bin/phpmd src text phpmd.xml;
+                echo \"Running phpstan...\";
+                vendor/bin/phpstan analyse src --level max;
+            "
+    #======================================================
+    # Unit
+    #======================================================
+    unit:
+        image: php:${PHP_VERSION}-alpine
+        volumes:
+            - ${ROOT_DIR}:${ROOT_DIR}
+        working_dir: ${ROOT_DIR}
+        command: >
+            /bin/sh -c "
+                vendor/bin/phpunit -c phpunit.xml
+            "
