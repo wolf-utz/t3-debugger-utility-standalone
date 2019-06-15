@@ -4,15 +4,14 @@ services:
     # Build
     #======================================================
     build:
-        image: php:${PHP_VERSION}-alpine
+        image: composer
         volumes:
             - ${ROOT_DIR}:${ROOT_DIR}
         working_dir: ${ROOT_DIR}
         command: >
             /bin/sh -c "
-                curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
                 composer validate
-                composer install
+                composer install --prefer-dist
             "
     #======================================================
     # Quality
