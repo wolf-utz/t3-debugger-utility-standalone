@@ -11,7 +11,6 @@ setUpDockerComposeDotEnv() {
     # Delete possibly existing local .env file if exists
     [ -e .env ] && rm .env
     echo "ROOT_DIR"=${ROOT_DIR} >> .env
-    echo "EXTRA_TEST_OPTIONS=${EXTRA_TEST_OPTIONS}" >> .env
     echo "PHP_VERSION=${PHP_VERSION}" >> .env
 }
 
@@ -25,30 +24,26 @@ fi
 read -r -d '' HELP <<EOF
 Test runner.
 
-Usage: $0 [options] [file]
+Usage: $0 [options]
 
-No arguments: Run all acceptance tests (not .side files)
+No arguments: Run all unit tests
 
 Options:
     -s <...>
         Specifies which test suite to run
-            - build: Test if the project can be build with errors.
-            - unit: Runs the unit tests
-            - quality: Runs the code quality tests.
+            - build: Test if the project can be build without errors.
+            - unit: Runs all unit tests
+            - quality: Runs all code quality tests.
 
-    -e "<test options>"
-        Only with -s acceptance
-        Additional options to send to codeception tests.
-
-    -p <5.6|7.0|7.1|7.2|7.3>
+    -p <7.1|7.2|7.3>
         Specifies the PHP version to be used
 
     -h
         Show this help.
 
 Examples:
-    build/scripts/console.sh -s quality -p 5.6
-    build/scripts/console.sh -s unit -p 7.0 -e "--verbose"
+    build/scripts/console.sh -s quality -p 7.1
+    build/scripts/console.sh -s unit -p 7.2
 EOF
 
 # Gets the realpath.
@@ -73,7 +68,6 @@ cd ../testing-docker || exit 1
 ROOT_DIR=$(realpath $PWD"/../..")
 OPTION="unit"
 PHP_VERSION="7.1"
-EXTRA_TEST_OPTIONS=""
 
 # Option parsing
 # Reset in case getopts has been used previously in the shell
@@ -85,9 +79,6 @@ while getopts ":s:d:p:e:xy:huv" OPT; do
     case ${OPT} in
         s)
             OPTION=${OPTARG}
-            ;;
-        e)
-            EXTRA_TEST_OPTIONS=${OPTARG}
             ;;
         p)
             PHP_VERSION=${OPTARG}

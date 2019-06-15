@@ -56,5 +56,37 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Please make sure to update tests as appropriate.
 
+### How to run tests local
+To run the tests use the console file (`build/scripts/console.sh`)
+
+#### Test runner help
+
+No arguments: Run all unit tests
+
+Options:
+
+    -s <...>
+        Specifies which test suite to run
+            - build: Test if the project can be build without errors.
+            - unit: Runs all unit tests
+            - quality: Runs all code quality tests.
+
+    -p <7.1|7.2|7.3>
+        Specifies the PHP version to be used
+
+    -h
+        Show this help.
+
+Examples:
+> Run unit tests using PHP 7.2:
+> `build/scripts/console.sh  -s unit -p 7.2`
+
+> Run code quality tests using PHP 7.3
+> `build/scripts/console.sh  -s quality -p 7.3`
+
+#### Test runner information
+This library is developed using OSX. 
+If you are using a different OS there might be a chance that this script wont work.
+
 ## License
 [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
