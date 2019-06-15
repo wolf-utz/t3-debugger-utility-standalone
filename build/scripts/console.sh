@@ -131,3 +131,5 @@ case ${OPTION} in
         echo "${HELP}" >&2
         exit 1
 esac
+
+exit $SUITE_EXIT_CODE
