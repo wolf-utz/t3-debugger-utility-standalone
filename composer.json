@@ -3,6 +3,11 @@
     "description": "A standalone port of the DebuggerUtility of the well known CMS TYPO3.",
     "type": "library",
     "license": "GPL-3.0-or-later",
+    "keywords": [
+        "debug",
+        "var_dump",
+        "typo3"
+    ],
     "authors": [
         {
             "name": "Wolf Utz",
