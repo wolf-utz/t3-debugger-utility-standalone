@@ -25,10 +25,8 @@ services:
             /bin/sh -c "
                 echo \"Running phpcs...\";
                 vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php src;
-                echo \"Running phpmd...\";
-                vendor/bin/phpmd src text phpmd.xml;
                 echo \"Running phpstan...\";
-                vendor/bin/phpstan analyse src --level max;
+                vendor/bin/phpstan analyse src --level 6;
             "
     #======================================================
     # Unit

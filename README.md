@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/0m3gaC0d3/t3-debugger-utility-standalone.svg?branch=master)](https://travis-ci.org/0m3gaC0d3/t3-debugger-utility-standalone)
+[![CodeFactor](https://www.codefactor.io/repository/github/0m3gaC0d3/t3-debugger-utility-standalone/badge)](https://www.codefactor.io/repository/github/0m3gaC0d3/t3-debugger-utility-standalone)
 
 # TYPO3 DebuggerUtility - Standalone
 This library is for everybody who wants to use the DebuggerUtility of the well known CMS TYPO3 (v 9.5) in its own project.
